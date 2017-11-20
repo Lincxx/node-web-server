@@ -5,6 +5,7 @@ const hbs     = require('hbs');
 var app = express();
 
 //exppress configurations 
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 //middleware -
@@ -19,12 +20,13 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/about', (req, res)=>{
+app.get('/about', (req, res)=> {
     res.render('about', {
         pageTitle: 'About Page',
         currentYear: new Date().getFullYear()
     });
 });
+
 app.get('/bad', (req, res) =>{
     res.send({
         error:'Unable to fulfill this request'
