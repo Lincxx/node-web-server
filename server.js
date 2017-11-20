@@ -3,6 +3,8 @@ const express = require('express');
 //new express app
 var app = express();
 
+//middleware -
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     //res.send('<h1>Hello Express</h1>');
