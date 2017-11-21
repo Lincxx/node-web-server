@@ -14,8 +14,7 @@ app.set('view engine', 'hbs');
 //////////////
 //Middleware
 /////////////
-app.use(express.static(__dirname + '/public'));
-//an empty middleware will cause your app not to run 
+//an empty middleware will cause your app not to run or no call to next
 app.use((req, res, next) => {
     //logger
     var now = new Date().toString();
@@ -28,6 +27,14 @@ app.use((req, res, next) => {
     });
     next();
 });
+
+//maintenance middleware
+// app.use((req, res, next) => {
+//     res.render('maintenance');
+// });
+
+//we moved this to keep it from firing first and exposing the public while in maintenance mode
+app.use(express.static(__dirname + '/public'));
 
 
 //////////////
